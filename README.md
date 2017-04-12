@@ -1,6 +1,5 @@
 # maptor-consumer
-JavaScript module for easily constumisable maptor consuming
-
+JavaScript module for easily constumisable maptor consuming 
 # usage
 You first need to require the module, or, if installed with a library, it will already be there:
 
@@ -146,9 +145,11 @@ MC.map( data, maptor );
 {
   a: 1
 }
-````
+```
 
 Maptor methods matching data arrays and objects will still act as functions:
+
+```
 const data = {
   messages: [ 'ben', 'yes?', 'you should use magic (boom)', 'ok' ],
   info: {
