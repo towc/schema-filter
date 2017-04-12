@@ -1,13 +1,16 @@
 # maptor-consumer
-JavaScript module for easily constumisable maptor consuming 
-# usage
+
+JavaScript module for easily customisable maptor consuming
+
+# Usage
+
 You first need to require the module, or, if installed with a library, it will already be there:
 
 ```
 const MC = require('maptor-consumer');
 ```
 
-Then let's look at a base case scenario: we want to make a new object like this one, but only take `a` and `b`, disgarding `c`
+Then let's look at a base case scenario: we want to make a new object like this one, but only take `a` and `b`, discarding `c`
 
 ```
 const data = {
