@@ -4,7 +4,7 @@ var MaptorConsumer = {}
 MC.map = function( obj, maptor ) {
 
   if( obj.constructor === Array && maptor.constructor === Array )
-    return obj.map( function( item ){ return MC.maptor( item, maptor[0] )})
+    return obj.map( function( item ){ return MC.map( item, maptor[0] )})
 
   var newObj = {};
   for( var prop in obj ) {
@@ -14,7 +14,7 @@ MC.map = function( obj, maptor ) {
         , objProp = obj[ prop ];
 
       if( typeof objProp === 'object' && typeof maptorProp === 'object' ){
-        newObj[ prop ] = MC.maptor( obj[ prop ], maptor[ prop ] )
+        newObj[ prop ] = MC.map( obj[ prop ], maptor[ prop ] )
       } else {
         var newProp = maptorProp( objProp );
         if( newProp !== void(0) )
