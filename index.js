@@ -3,6 +3,9 @@ var MaptorConsumer = {}
 
 MC.map = function( obj, maptor ) {
 
+  if( typeof maptor === 'function' )
+    return maptor( obj );
+
   if( obj.constructor === Array && maptor.constructor === Array )
     return obj.map( function( item ){ return MC.map( item, maptor[0] )})
 
