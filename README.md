@@ -159,7 +159,7 @@ MC.map(
 
 A shortcut for the identity, so you don't have to define it yourself, is setting the maptor's key value to the number `1`:
 
-```
+```js
 MC.map({ a: 'hello' }, { a: 1 }); // { a: 'hello' }
 // same as
 const I = (x) => x;
