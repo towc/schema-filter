@@ -63,25 +63,25 @@ const mapped = {
 
 It really doesn't just stop at filtering! The `I` function can be anything. Here are a few useful examples:
 
-```
+```js
 const dateStrToMS = (x) => +(new Date(x));
 const data = { time: 'Wed Apr 12 2017 09:33:55 GMT+0100 (BST)' };
 const maptor = { time: dateStrToMS };
-const newObj = MC.map( data, maptor ); // { time: 1491986035000 }
+const newObj = MC.map(data, maptor); // { time: 1491986035000 }
 
 const toLowerCase = (x) => x.toLowerCase();
 const data = { username: 'BenjaminBenBen' };
 const maptor = { username: toLowerCase };
-const newObj = MC.map( data, maptor ); // { username: 'benjaminbenben' }
+const newObj = MC.map(data, maptor); // { username: 'benjaminbenben' }
 ```
 
 Your functions can be as complicated as you want them to be
 
 # What if maptor properties are arrays or objects?
 
-The `MC` will try to match the structure. Arrays can only have one element: either another array or an object. Here's an example:
+The `MC` will try to match the structure. `Arrays` can only have one element: either another `array` or an `object`. Here's an example:
 
-```
+```js
 const data = {
   a: 1,
   b: {
@@ -116,26 +116,31 @@ MC.map( data, maptor );
     c: 2,
     d: [{
       e: 3
-    },{
+    }, {
       e: 5
     }]
   }
 }
 ```
 
-Pretty cool, huh? Of course you don't need to use ES6. The library/module is usable in ES5 and you don't have to use arrow functions or any of the sorts.
+Pretty cool, huh?
 
 # How do I change the name of a property?
 
 You can change the maptor's key value to the name of the correspondant property:
-```
-MC.map({
+
+```js
+MC.map(
+// data
+{
   a: [{
     b: 1
   }, {
     b: 2
   }]
-}, {
+}, 
+// maptor
+{
   a: [{
     c: 'b'
   }]
@@ -152,48 +157,53 @@ MC.map({
 
 # other little things
 
-A shortcut for the identity, so you don't have to define it yourself, is setting the maptor's key value to `1`:
+A shortcut for the identity, so you don't have to define it yourself, is setting the maptor's key value to the number `1`:
 
 ```
 MC.map({ a: 'hello' }, { a: 1 }); // { a: 'hello' }
+// same as
+const I = (x) => x;
+MC.map({ a: 'hello' }, { a: I });
 ```
 
-Maptor methods can return undefined to filter out a property:
+Maptor methods can return `undefined` to filter out a property:
 
-```
+```js
 const data = {
   a: '1',
   b: 'ben lives forever'
 };
 const toNum = (x) => {
-  if( !isNaN( parseInt( x ) ) )
-    return parseInt( x );
+  if(!isNaN(parseInt(x)))
+    return parseInt(x);
   // otherwise it returns undefined by default
 }
 const maptor = {
   a: toNum,
   b: toNum
 };
-MC.map( data, maptor );
+MC.map(data, maptor);
 // will return
 {
   a: 1
 }
 ```
 
-Maptor methods matching data arrays and objects will still act as functions:
+Maptor methods matching data `arrays` and `objects` will still act as functions:
 
-```
+```js
 const data = {
-  messages: [ 'ben', 'yes?', 'you should use magic (boom)', 'ok' ],
+  messages: ['ben', 'yes?', 'you should use magic (boom)', 'ok'],
   info: {
-    users: [ 'Max', 'Ben', 'Max' ],
+    users: ['Max', 'Ben', 'Max'],
   }
 }
 const maptor = {
   messages: (x) => x.length,
   info: (x) => {
-    x.users.push( 'Ben' ); // NOTE: this will modify the original data as well because it's still referenced to that. It's up to you to sort that out when using functions on objects and arrays
+    x.users.push( 'Ben' ); 
+    // NOTE: ^ will modify the original data as well because it's still referenced to that
+    // It's up to you to sort that out when using functions on objects and arrays
     x.userAmount = x.users.length;
     return x
   }
