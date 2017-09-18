@@ -89,7 +89,7 @@ const data = {
     d: [{
       e: 3,
       f: 4
-    },{
+    }, {
       e: 5,
       f: 6
     }]
@@ -125,7 +125,38 @@ MC.map( data, maptor );
 
 Pretty cool, huh? Of course you don't need to use ES6. The library/module is usable in ES5 and you don't have to use arrow functions or any of the sorts.
 
+# How do I change the name of a property?
+
+You can change the maptor's key value to the name of the correspondant property:
+```
+MC.map({
+  a: [{
+    b: 1
+  }, {
+    b: 2
+  }]
+}, {
+  a: [{
+    c: 'b'
+  }]
+});
+// will return
+{
+  a: [{
+    c: 1
+  }, {
+    c: 2
+  }]
+}
+```
+
 # other little things
+
+A shortcut for the identity, so you don't have to define it yourself, is setting the maptor's key value to `1`:
+
+```
+MC.map({ a: 'hello' }, { a: 1 }); // { a: 'hello' }
+```
 
 Maptor methods can return undefined to filter out a property:
 
