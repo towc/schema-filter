@@ -1,27 +1,31 @@
-var MaptorConsumer = {}
-  , MC = MaptorConsumer;
+const MaptorConsumer = {}
+    , MC = MaptorConsumer;
 
-MC.map = function( obj, maptor ) {
+MC.map = (obj, maptor) => {
 
-  if( typeof maptor === 'function' )
-    return maptor( obj );
+  if(typeof maptor === 'function') {
+    return maptor(obj);
+  }
 
-  if( obj.constructor === Array && maptor.constructor === Array )
-    return obj.map( function( item ){ return MC.map( item, maptor[0] )})
+  if(obj.constructor === Array && maptor.constructor === Array) {
+    return obj.map((item) =>  MC.map(item, maptor[0]));
+  }
 
-  var newObj = {};
-  for( var prop in obj ) {
-    if( maptor.hasOwnProperty( prop ) ) {
+  const newObj = {};
+  for(let prop in obj) {
+    if(maptor.hasOwnProperty(prop)) {
 
-      var maptorProp = maptor[ prop ]
-        , objProp = obj[ prop ];
+      const maptorProp = maptor[prop]
+          , objProp = obj[prop];
 
-      if( typeof objProp === 'object' && typeof maptorProp === 'object' ){
-        newObj[ prop ] = MC.map( obj[ prop ], maptor[ prop ] )
+      if(typeof objProp === 'object' && typeof maptorProp === 'object') {
+        newObj[prop] = MC.map(obj[prop], maptor[prop])
+
       } else {
-        var newProp = maptorProp( objProp );
-        if( newProp !== void(0) )
+        const newProp = maptorProp(objProp);
+        if(newProp !== undefined) {
           newObj[ prop ] = newProp;
+        }
       }
     }
   }
