@@ -6,13 +6,13 @@ JavaScript module for easily customisable maptor consuming
 
 You first need to require the module, or, if installed with a library, it will already be there:
 
-```
+```js
 const MC = require('maptor-consumer');
 ```
 
 Then let's look at a base case scenario: we want to make a new object like this one, but only take `a` and `b`, discarding `c`
 
-```
+```js
 const data = {
   a: 1,
   b: 2,
@@ -22,7 +22,7 @@ const data = {
 
 To do that, we need to define a `maptor`, and tell it to do just that, then call `MC.map` with those parameters:
 
-```
+```js
 const I = (x) => x; // identity function
 const maptor = {
   a: I,
@@ -34,7 +34,7 @@ const mapped = MC.map( data, maptor );
 Let's  try to understand what this does. First of all, each property in the maptor should either be assigned to one of functions, objects, or arrays. If the value is a function, then the value of the original object will be mapped through that function. `I` just happened to be the identity function, which means that the values for the mapped object will be:
 
 
-```
+```js
 const mapped = {
   a: maptor.a( data.a ),
   b: maptor.b( data.b )
@@ -43,7 +43,7 @@ const mapped = {
 
 So if `I` is the identity function, the above will be practically the same as
 
-```
+```js
 const mapped = {
   a: data.a,
   b: data.b
@@ -52,7 +52,7 @@ const mapped = {
 
 Note that if a value is not defined in the maptor, it is simply ignored, so we get a filtering out of the `c` property. At this point we can just hook the values up:
 
-```
+```js
 const mapped = {
   a: 1,
   b: 2
