@@ -12,20 +12,25 @@ MC.map = (obj, maptor) => {
   }
 
   const newObj = {};
-  for(let prop in obj) {
-    if(maptor.hasOwnProperty(prop)) {
+  for(let prop in maptor) {
 
-      const maptorProp = maptor[prop]
-          , objProp = obj[prop];
+    const maptorProp = maptor[prop]
+        , objProp = obj[prop];
 
-      if(typeof objProp === 'object' && typeof maptorProp === 'object') {
-        newObj[prop] = MC.map(obj[prop], maptor[prop])
+    if(typeof maptorProp === 'string') {
+      newObj[prop] = obj[maptorProp];
 
-      } else {
-        const newProp = maptorProp(objProp);
-        if(newProp !== undefined) {
-          newObj[ prop ] = newProp;
-        }
+    } else if(typeof maptorProp === 'number') {
+      if(maptorProp === 1) {
+        newObj[prop] = objProp;
+      }
+    } else if(typeof objProp === 'object' && typeof maptorProp === 'object') {
+      newObj[prop] = MC.map(obj[prop], maptor[prop])
+
+    } else {
+      const newProp = maptorProp(objProp);
+      if(newProp !== undefined) {
+        newObj[prop] = newProp;
       }
     }
   }
