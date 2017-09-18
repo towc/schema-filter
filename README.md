@@ -28,7 +28,7 @@ const maptor = {
   a: I,
   b: I
 }
-const mapped = MC.map( data, maptor );
+const mapped = MC.map(data, maptor);
 ```
 
 Let's  try to understand what this does. First of all, each property in the maptor should either be assigned to one of functions, objects, or arrays. If the value is a function, then the value of the original object will be mapped through that function. `I` just happened to be the identity function, which means that the values for the mapped object will be:
@@ -36,8 +36,8 @@ Let's  try to understand what this does. First of all, each property in the mapt
 
 ```js
 const mapped = {
-  a: maptor.a( data.a ),
-  b: maptor.b( data.b )
+  a: maptor.a(data.a),
+  b: maptor.b(data.b)
 }
 ```
 
