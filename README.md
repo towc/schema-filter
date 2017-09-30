@@ -75,7 +75,16 @@ const maptor = { username: toLowerCase };
 const newObj = MC.map(data, maptor); // { username: 'benjaminbenben' }
 ```
 
-Your functions can be as complicated as you want them to be
+Your functions can be as complicated as you want them to be.
+
+In some cases, it might be useful to also get the property name, and to possibly make the structure of your code a bit simpler, we provided it as the second parameter
+
+```js
+const addPropertyName = (x, name) => x + name;
+const data = { a: 1, b: 2 }
+const maptor = { a: addPropertyName, b: addPropertyName };
+const newObj = MC.map(data, maptor); // { a: '1a', b: '1b' }
+```
 
 # What if maptor properties are arrays or objects?
 

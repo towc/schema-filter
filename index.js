@@ -28,7 +28,7 @@ MC.map = (obj, maptor) => {
       newObj[prop] = MC.map(obj[prop], maptor[prop])
 
     } else {
-      const newProp = maptorProp(objProp);
+      const newProp = maptorProp(objProp, prop);
       if(newProp !== undefined) {
         newObj[prop] = newProp;
       }
